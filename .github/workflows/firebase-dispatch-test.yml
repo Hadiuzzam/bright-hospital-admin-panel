@@ -1,0 +1,17 @@
+name: Firebase Dispatch Test
+
+on:
+  repository_dispatch:
+    types:
+      - firebase-blog-changed
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Confirm dispatch
+        run: |
+          echo "Repository dispatch received successfully"
+          echo "Blog ID: ${{ github.event.client_payload.blogId }}"
+          echo "Change Type: ${{ github.event.client_payload.changeType }}"
